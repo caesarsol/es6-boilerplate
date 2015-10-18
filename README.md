@@ -1,6 +1,6 @@
 ## ES6 Babel Browserify Boilerplate
 
-My personal ES6 boilerplate, to make it easy to experiment with [ES6](git.io/es6features).
+My personal ES6 boilerplate, to make it easy to experiment with [ES6](http://git.io/es6features).
 
 It's inspired by:
  - [es6-browserify-boilerplate](https://github.com/thoughtram/es6-browserify-boilerplate)
