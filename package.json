@@ -1,26 +1,29 @@
 {
-  "name": "es6-6to5-browserify-boilerplate",
-  "version": "0.0.0",
-  "description": "A repo to play with ES6++",
-  "homepage": "https://github.com/thoughtram/es6-6to5-browserify-boilerplate",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/thoughtram/es6-6to5-browserify-boilerplate.git"
-  },
-  "bugs": {
-    "url": "https://github.com/thoughtram/es6-6to5-browserify-boilerplate/issues"
-  },
+  "name": "es6-boilerplate",
+  "version": "0.0.1",
+  "description": "A repo to play with ES6",
+  "author": "Cesare Soldini <cesare.soldini@gmail.com>",
+  "homepage": "https://github.com/caesarsol/es6-boilerplate",
+  "repository": "caesarsol/es6-boilerplate",
+  "license": "GPL-3.0",
   "devDependencies": {
+    "babel": "^5.8.23",
+    "babel-eslint": "^4.1.3",
     "babelify": "~5.0.3",
-    "browser-sync": "^1.7.1",
+    "browser-sync": "^2.9.11",
     "browserify": "^6.3.3",
-    "gulp": "~3.8.10",
+    "eslint": "^1.7.1",
+    "eslint-config-standard": "^4.4.0",
+    "eslint-plugin-react": "^3.6.2",
+    "eslint-plugin-standard": "^1.3.1",
+    "gulp": "^3.9.0",
     "gulp-rename": "^1.2.0",
-    "lodash": "^2.4.1",
+    "gulp-sass": "^2.0.4",
+    "lodash": "^3.10.0",
     "rimraf": "~2.2.8",
-    "watchify": "^2.1.1",
-    "vinyl-source-stream": "^1.0.0"
+    "vinyl-source-stream": "^1.0.0",
+    "watchify": "^2.1.1"
   },
-  "author": "Christoph Burgdorf <christoph@thoughtram.io>",
-  "license": "MIT"
+  "dependencies": {
+  }
 }
