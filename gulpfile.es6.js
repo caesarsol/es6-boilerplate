@@ -6,6 +6,7 @@ import rimraf from 'rimraf'
 import source from 'vinyl-source-stream'
 import sass from 'gulp-sass'
 import browserSyncModule from 'browser-sync'
+import autoprefixer from 'gulp-autoprefixer'
 
 let browserSync = browserSyncModule.create()
 
@@ -57,6 +58,7 @@ gulp.task('js', function () {
 gulp.task('sass', function () {
   return gulp.src(config.inFiles.css)
     .pipe(sass()).on('error', (err) => console.error(err))
+    .pipe(autoprefixer({ browsers: ['> 5% in IT', 'ie >= 8'] }))
     .pipe(gulp.dest(config.outDir))
     .pipe(browserSync.stream())
 })
