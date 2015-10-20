@@ -10,17 +10,21 @@ import browserSyncModule from 'browser-sync'
 let browserSync = browserSyncModule.create()
 
 const config = {
-  entryFile:  './src/app.es6.js',
-  styleFile:  './src/style.sass',
-  htmlFile:  './src/index.html',
-  outputDir:  './build/',
-  outputFile: 'app.js',
+  inFiles: {
+    html: 'src/*.html',
+    js:   'src/app.es6.js',
+    css:  'src/style.{sass,scss,css}',
+  },
+  outDir: 'build/',
+  outFiles: {
+    js:   'app.js',
+  },
 }
 
 function getBundler() {
   if (!global.bundler) {
     let conf = {
-      entries: [config.entryFile],
+      entries: [config.inFiles.js],
       debug: true,
     }
     Object.assign(conf, watchify.args)
@@ -30,12 +34,12 @@ function getBundler() {
 }
 
 gulp.task('clean', function (cb) {
-  return rimraf(config.outputDir, cb)
+  return rimraf(config.outDir, cb)
 })
 
 gulp.task('server', function () {
   return browserSync.init({
-    server: {baseDir: config.outputDir},
+    server: {baseDir: config.outDir},
     ui: false,
   })
 })
@@ -44,28 +48,28 @@ gulp.task('js', function () {
   return getBundler()
     .transform(babelify)
     .bundle()
-    .on('error', (err) => console.error('Error: ' + err.message))
-    .pipe(source(config.outputFile))
-    .pipe(gulp.dest(config.outputDir))
+    .on('error', (err) => console.error(err.message))
+    .pipe(source(config.outFiles.js))
+    .pipe(gulp.dest(config.outDir))
     .pipe(browserSync.stream())
 })
 
 gulp.task('sass', function () {
-  return gulp.src(config.styleFile)
-    .pipe(sass())
-    .pipe(gulp.dest(config.outputDir))
+  return gulp.src(config.inFiles.css)
+    .pipe(sass()).on('error', (err) => console.error(err))
+    .pipe(gulp.dest(config.outDir))
     .pipe(browserSync.stream())
 })
 
 gulp.task('html', function () {
-  return gulp.src(config.htmlFile)
-    .pipe(gulp.dest(config.outputDir)) // Just copy.
+  return gulp.src(config.inFiles.html)
+    .pipe(gulp.dest(config.outDir)) // Just copy.
     .pipe(browserSync.stream())
 })
 
 gulp.task('watch', ['clean', 'server', 'js', 'sass', 'html'], function () {
   // FIXME: initial build is done two times
   getBundler().on('update', () => gulp.start('js'))
-  gulp.watch(config.styleFile, ['sass'])
-  gulp.watch(config.htmlFile, ['html'])
+  gulp.watch(config.inFiles.css, ['sass'])
+  gulp.watch(config.inFiles.html, ['html'])
 })
