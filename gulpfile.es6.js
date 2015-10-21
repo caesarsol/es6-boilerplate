@@ -7,6 +7,7 @@ import source from 'vinyl-source-stream'
 import sass from 'gulp-sass'
 import browserSyncModule from 'browser-sync'
 import autoprefixer from 'gulp-autoprefixer'
+import gutil from 'gulp-util'
 
 let browserSync = browserSyncModule.create()
 
@@ -20,6 +21,16 @@ const config = {
   outFiles: {
     js:   'app.js',
   },
+}
+
+gutil.log('Starting!')
+
+function logError(err) {
+  gutil.log(
+    `[${gutil.colors.blue(err.plugin)}] ${gutil.colors.red('Error:')}`,
+    `${gutil.colors.red(err.messageFormatted || err.message)}`
+  )
+  gutil.log(err)
 }
 
 function getBundler() {
@@ -46,10 +57,9 @@ gulp.task('server', function () {
 })
 
 gulp.task('js', function () {
-  return getBundler()
-    .transform(babelify)
-    .bundle()
-    .on('error', (err) => console.error(err.message))
+  return getBundler().on('error', logError)
+    .transform(babelify).on('error', logError)
+    .bundle().on('error', logError)
     .pipe(source(config.outFiles.js))
     .pipe(gulp.dest(config.outDir))
     .pipe(browserSync.stream())
@@ -57,7 +67,7 @@ gulp.task('js', function () {
 
 gulp.task('sass', function () {
   return gulp.src(config.inFiles.css)
-    .pipe(sass()).on('error', (err) => console.error(err))
+    .pipe(sass()).on('error', logError)
     .pipe(autoprefixer({ browsers: ['> 5% in IT', 'ie >= 8'] }))
     .pipe(gulp.dest(config.outDir))
     .pipe(browserSync.stream())
