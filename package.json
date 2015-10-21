@@ -7,7 +7,7 @@
   "repository": "caesarsol/es6-boilerplate",
   "license": "GPL-3.0",
   "devDependencies": {
-    "babel": "^5.8.23",
+    "babel-core": "^5.8.25",
     "babel-eslint": "^4.1.3",
     "babelify": "^6.3.0",
     "browser-sync": "^2.9.11",
