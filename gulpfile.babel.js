@@ -37,10 +37,12 @@ function getBundler() {
   if (!global.bundler) {
     let conf = {
       entries: [config.inFiles.js],
+      paths: ['./node_modules', './src'],
       debug: true,
     }
     Object.assign(conf, watchify.args)
-    global.bundler = watchify(browserify(conf))
+
+    global.bundler = watchify(browserify(conf)).transform(babelify)
   }
   return global.bundler
 }
@@ -57,9 +59,8 @@ gulp.task('server', function () {
 })
 
 gulp.task('js', function () {
-  return getBundler().on('error', logError)
-    .transform(babelify).on('error', logError)
-    .bundle().on('error', logError)
+  return getBundler().bundle()
+    .on('error', logError)
     .pipe(source(config.outFiles.js))
     .pipe(gulp.dest(config.outDir))
     .pipe(browserSync.stream())
