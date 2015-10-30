@@ -8,7 +8,7 @@ function app() {
 
   let xScale = d3.scale.linear().range([height, 0])
 
-  let svg = d3.select('body').append('svg')
+  let svg = d3.select('#graph').append('svg')
       .attr('width', width)
       .attr('height', height)
     .append('g')

@@ -14,7 +14,7 @@ let browserSync = browserSyncModule.create()
 const config = {
   inFiles: {
     html: 'src/*.html',
-    js:   'src/app.es6.js',
+    js:   ['src/react.es6.js', 'src/d3.es6.js'],
     css:  'src/style.{sass,scss,css}',
   },
   outDir: 'build/',
@@ -36,7 +36,7 @@ function logError(err) {
 function getBundler() {
   if (!global.bundler) {
     let conf = {
-      entries: [config.inFiles.js],
+      entries: config.inFiles.js,
       paths: ['./node_modules', './src'],
       debug: true,
     }
