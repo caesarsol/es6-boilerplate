@@ -9,10 +9,11 @@ class Counter extends React.Component {
   }
 
   componentWillMount() {
-    this.props.disp.register( ({ action }) => {
+    this.props.disp.register(({ action }) => {
       console.log('Received action')
-      if (action == 'INC')
+      if (action === 'INC') {
         this.setState({count: this.state.count + 1})
+      }
     })
   }
 
@@ -24,7 +25,7 @@ class Counter extends React.Component {
 class Button extends React.Component {
   sendAction() {
     this.props.disp.dispatch({
-      action: this.props.actionName
+      action: this.props.actionName,
     })
   }
 

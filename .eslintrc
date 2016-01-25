@@ -1,4 +1,5 @@
 {
+  "parser": "babel-eslint",
   "extends": "standard",
   "rules": {
     "comma-dangle": [1, "always-multiline"], // if transpiled!
@@ -9,6 +10,9 @@
       "VariableDeclarator": true,
       "BinaryExpression":   true
     } }],
-  }
+  },
+  "plugins": [
+    "react",
+    "standard"
+  ]
 }
-/* global a, b, c */
