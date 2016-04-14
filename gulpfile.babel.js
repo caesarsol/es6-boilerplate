@@ -55,6 +55,9 @@ gulp.task('server', function () {
   return browserSync.init({
     server: {baseDir: config.outDir},
     ui: false,
+    notify: false,
+    host: '0.0.0.0',
+    port: 8080,
   })
 })
 
