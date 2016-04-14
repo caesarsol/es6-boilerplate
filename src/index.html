@@ -11,16 +11,20 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div id="first">
-      <!-- This will be filled by React -->
-    </div>
-    <p>Two decoupled elements!</p>
-    <div id="second">
-      <!-- This will be filled by React -->
-    </div>
+    <div class="videolist">
 
-    <div id="graph">
-      <!-- This wil be filled by D3.js -->
+      <div class="videolist--item js-triggered" data-triggered-by="a">
+        <video src="http://www.das-studio.it/ftp/TEST_VIDEO/05.mp4" autoload></video>
+      </div>
+
+      <div class="videolist--item js-triggered" data-triggered-by="s">
+        <video src="http://www.das-studio.it/ftp/TEST_VIDEO/03.mp4" autoload></video>
+      </div>
+
+      <div class="videolist--item js-triggered" data-triggered-by="d">
+        <video src="http://www.das-studio.it/ftp/TEST_VIDEO/04.mp4" autoload></video>
+      </div>
+
     </div>
 
     <script src="app.js"></script>

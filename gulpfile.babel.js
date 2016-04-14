@@ -14,7 +14,7 @@ let browserSync = browserSyncModule.create()
 const config = {
   inFiles: {
     html: 'src/*.html',
-    js:   ['src/react.es6.js', 'src/d3.es6.js'],
+    js:   ['src/videos.es6.js'],
     css:  'src/style.{sass,scss,css}',
   },
   outDir: 'build/',
