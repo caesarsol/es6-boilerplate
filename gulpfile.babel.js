@@ -14,7 +14,7 @@ let browserSync = browserSyncModule.create()
 const config = {
   inFiles: {
     html: 'src/*.html',
-    js:   ['src/react.es6.js', 'src/d3.es6.js'],
+    js:   ['src/app.es6.js'],
     css:  'src/style.{sass,scss,css}',
   },
   outDir: 'build/',
@@ -30,7 +30,6 @@ function logError(err) {
     `[${gutil.colors.blue(err.plugin)}] ${gutil.colors.red('Error:')}`,
     `${gutil.colors.red(err.messageFormatted || err.message)}`
   )
-  gutil.log(err)
 }
 
 function getBundler() {
@@ -89,3 +88,5 @@ gulp.task('watch', ['clean', 'server', 'js', 'sass', 'html'], function () {
   gulp.watch(config.inFiles.css, ['sass'])
   gulp.watch(config.inFiles.html, ['html'])
 })
+
+gulp.task('default', ['watch'])
